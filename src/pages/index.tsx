@@ -31,9 +31,10 @@ export default function Home({ connected }) {
             Easily extendable zero-config template for pros and beginners.
           </h2>
 
-          <h2 className="mx-auto mt-8 max-w-2xl -rotate-2 rounded bg-gradient-to-r from-teal-500 to-blue-500 py-6 text-center text-base tracking-tight text-white sm:text-2xl md:mt-5 md:text-2xl">
-            <span className="font-extrabold">Extension version</span> Prisma +
+          <h2 className="mx-auto mt-8 flex max-w-2xl rotate-2 flex-row items-center justify-center rounded bg-gradient-to-r from-pink-500 to-orange-500 py-6 text-center text-base tracking-tight text-white sm:text-2xl md:mt-5 md:text-2xl">
+            <span className="mr-2 font-extrabold"> Extend with </span> Prisma +
             NextAuth + Docker
+            <p className="animate-bounce text-5xl">👇</p>
           </h2>
 
           <div className="px-4 sm:px-0">
@@ -130,7 +131,7 @@ export default function Home({ connected }) {
                   <Link href="https://github.com/tallez/Next-Advanced-Prisma-Extension">
                     <a
                       type="button"
-                      className="inline-flex items-center rounded-md border border-transparent bg-orange-600 px-4 py-4 font-medium leading-6 text-white transition duration-150 ease-in-out hover:bg-orange-500 focus:border-orange-700 focus:outline-none focus:ring-4 focus:ring-red-400 active:bg-red-700 sm:px-10"
+                      className="inline-flex items-center rounded-md border border-transparent bg-gradient-to-r from-pink-500 to-orange-500 px-4 py-4 font-medium leading-6 text-white transition duration-150 ease-in-out hover:bg-orange-500 focus:border-orange-700 focus:outline-none focus:ring-4 focus:ring-red-400 active:bg-red-700 sm:px-10"
                     >
                       Copy Template from GitHub
                     </a>
@@ -182,7 +183,7 @@ function Feature({
     var textClass = "ml-3 hidden text-lg text-gray-600 sm:inline"
   } else if (flavor === "extension") {
     var checkIconClass =
-      "hiddden hidden h-5 w-5 flex-shrink-0 rounded-full bg-orange-600 p-1 text-gray-100 sm:inline"
+      "hiddden hidden h-5 w-5 flex-shrink-0 rounded-full bg-pink-600 p-1 text-gray-100 sm:inline"
     var textClass = "ml-3 hidden text-lg text-white sm:inline"
   }
   return (
