@@ -1,13 +1,13 @@
 import React from "react"
-
 import Head from "next/head"
 import Link from "next/link"
+import prisma from "../../lib/prisma"
 
-export default function Home() {
+export default function Home(props) {
   return (
     <div>
       <Head>
-        <title>Next.js advanced start template.</title>
+        <title>Next.js full stack template.</title>
 
         <meta
           name="description"
@@ -138,4 +138,14 @@ function CheckIcon(props) {
       />
     </svg>
   )
+}
+
+export async function getServerSideProps() {
+  const user = await prisma.user.findMany()
+
+  return {
+    props: {
+      users: user || null,
+    },
+  }
 }
