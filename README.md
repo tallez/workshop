@@ -1,7 +1,7 @@
 This is an extension for the Alex agcty great Advanced Next Starter Template.
 https://github.com/agcty
 
-# Ready to play
+# Almost there ...
 
 To improve the full stack part a of Alex's template further, this extension integrate Prisma and provide the guideline to easily create and connect a Postgre database.
 Also, Next-Auth is implemented and Docker is ready for deployement.
@@ -11,20 +11,20 @@ First, start with "yarn install" in the console from the root folder.
 # Creating your Postgres
 
 Download Postgres SQL from https://www.postgresql.org/ .
-When ready create an empty folder in your Next application root folder named "database" or whatever you like (There is already one, feel free to change its name).
+When ready create an empty folder in your Next application root folder named "postgres" or whatever you like.
 From Postgres, create a new server.
 When setting up, set the source to your empty folder so it generates the database there.
 
-Be sure that the server is running.
+Be sure that the server is running before you continue.
 
 # Initialize Prisma
 
 You can initialize prisma with : "npx prisma init"
 
-# Connect your Postgre
+# Connect your Postgres
 
 A .env file has been generated. Now, you will change the DATABASE_URL variable to the Database connection URL string of your Postgres.
-In a basic local configuration, it should look like : "postgresql://USER:PASSWORD@localhost:PORT/DBNAME"
+In a basic local configuration, this should look like : "postgresql://USER:PASSWORD@localhost:PORT/DBNAME"
 
 # Create your first model in Prisma
 
