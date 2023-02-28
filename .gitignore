@@ -35,3 +35,6 @@ yarn-error.log*
 
 #database
 /postgres/*
+
+#prisma
+/prisma/migrations/*
