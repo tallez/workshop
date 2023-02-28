@@ -28,7 +28,7 @@ In a basic local configuration, this should look like : "postgresql://USER:PASSW
 
 # Create your first model in Prisma
 
-In schema.prisma, create your model (you will find a model user as default). When you are done enter this command : "npx prixma db push" .
+In schema.prisma, create your model (you will find already multipe models there, leave them if you want to NextAuth afterwards, you will need them ). When you are done enter this command : "npx prixma db push" .
 
 You should see this message : 🚀 Your database is now in sync with your Prisma schema.
 If not, it's probably a problem with the Database connection URL string of your Postgres, check again that your postgres server is running.
@@ -39,3 +39,17 @@ As another check, you can use this command : "npx prisma studio". It'll launch a
 
 With this command, generate your prisma client : "npx prisma generate"
 You'll have to run this command everytime you make a change to your prisma.schema file.
+
+# Turn on your app
+
+With your app turned on, the frame on the top right corner should be turn to pinkish :)
+
+# Set NextAuth
+
+You will only need to copy the .env.example file into your .env file.
+Be careful not to delete the postgre connection string.
+
+Then you need to complete the empty fields :)
+
+If successful you should be able to register through Google OAuth.
+If you want to add other providers like Facebook or Instagram, have a look here : https://next-auth.js.org/providers/

@@ -1,6 +1,9 @@
 import React from "react"
+
+import { useSession } from "next-auth/react"
 import Head from "next/head"
 import Link from "next/link"
+
 import prisma from "../../lib/prisma"
 
 export default function Home({ connected }) {
@@ -17,7 +20,10 @@ export default function Home({ connected }) {
 
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <PrismaConnectionSign connected={connected} />
+      <SignalTestersContainers>
+        <PrismaConnectionSign connected={connected} />
+        <NextAuthenticationSign connected={connected} />
+      </SignalTestersContainers>
       <main className="flex min-h-screen justify-center bg-gradient-to-b from-gray-50 via-gray-50 to-gray-100 py-20">
         <div>
           <h1 className="px-5 text-center text-4xl font-bold leading-tight tracking-tight sm:mt-4 sm:text-6xl">
@@ -126,7 +132,6 @@ export default function Home({ connected }) {
 
               <div className="space-y-5 place-self-center px-4 py-24 text-center">
                 <h3 className="text-3xl font-bold">Get it 👇</h3>
-
                 <span className="inline-flex rounded-md shadow-sm">
                   <Link href="https://github.com/tallez/Next-Advanced-Prisma-Extension">
                     <a
@@ -220,17 +225,21 @@ function CheckIcon(props) {
   )
 }
 
+function SignalTestersContainers({ children }) {
+  return <div className="fixed top-0 right-0 m-4 space-y-2">{children}</div>
+}
+
 function PrismaConnectionSign({ connected }: { connected: boolean }) {
   var signal: React.ReactNode
   var classSignal: string
   if (connected) {
     signal = <div className="h-2 w-2 rounded-full bg-green-500"></div>
     classSignal =
-      "fixed top-0 right-0 m-4 flex items-center justify-center space-x-4 rounded bg-gradient-to-r from-pink-500 to-orange-500 p-4"
+      "flex items-center justify-center space-x-4 rounded bg-gradient-to-r from-pink-500 to-orange-500 p-4"
   } else {
     signal = <div className="h-2 w-2 rounded-full bg-purple-800"></div>
     classSignal =
-      "fixed top-0 right-0 m-4 flex items-center justify-center space-x-4 rounded bg-gradient-to-r from-teal-500 to-blue-500 p-4"
+      "flex items-center justify-center space-x-4 rounded bg-gradient-to-r from-teal-500 to-blue-500 p-4"
   }
 
   return (
@@ -244,6 +253,34 @@ function PrismaConnectionSign({ connected }: { connected: boolean }) {
       {signal}
     </div>
   )
+}
+
+function NextAuthenticationSign({ connected }: { connected: boolean }) {
+  const { data: session, status } = useSession()
+
+  if (connected && session) {
+    return (
+      <Link href="/api/auth/signout" passHref>
+        <div className="flex items-center justify-center space-x-4 rounded bg-gradient-to-r from-pink-500 to-orange-500 p-4">
+          <span className="text-white">Valid NextAuth Session</span>
+        </div>
+      </Link>
+    )
+  } else if (!connected) {
+    return (
+      <div className="flex cursor-no-drop items-center justify-center space-x-4 rounded bg-gradient-to-r from-gray-100 to-gray-300 p-4">
+        <span className="text-gray-500">Need a connected Database</span>
+      </div>
+    )
+  } else {
+    return (
+      <Link href="/api/auth/signin" passHref>
+        <div className="flex cursor-pointer items-center justify-center space-x-4 rounded bg-gradient-to-r from-teal-500 to-blue-500 p-4  hover:from-teal-700 hover:to-blue-500">
+          <span className="text-white">No NextAuth session</span>
+        </div>
+      </Link>
+    )
+  }
 }
 
 export async function getServerSideProps() {
