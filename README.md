@@ -6,50 +6,46 @@ https://github.com/agcty
 To improve the full stack part a of Alex's template further, this extension integrate Prisma and provide the guideline to easily create and connect a Postgres database.
 Also, Next-Auth is implemented to secure your application and Docker is ready to help you deploy everywhere !
 
+REQUIREMENT : Docker must be installed and running on your machine
+
 First, clone the repository and install the dependencies with "yarn install" in the console from the root folder.
 
-# Creating your Database (Postgres)
+# Create the .env file ...
 
-Download Postgres SQL from https://www.postgresql.org/ .
-When ready create an empty folder in your Next application root folder named "postgres" or whatever you like.
-From Postgres, create a new server.
-When setting up, set the source to your empty folder so it generates the database there.
+... and copy the content of .env.example in it. 
+For the Google Authentication, you should create the credentials of your application in Google. 
 
-Be sure that the server is running before you continue.
+- Google Cloud Console : https://console.cloud.google.com/
+- Create a New Project or use an existing one 
+- Copy and Paste the ID and the SECRET key
 
-# Initialize Prisma
-
-You can initialize prisma with : "npx prisma init"
-
-# Connect your Database (Postgres)
-
-A .env file has been generated. Now, you will change the DATABASE_URL variable to the Database connection URL string of your Postgres.
-In a basic local configuration, this should look like : "postgresql://USER:PASSWORD@localhost:PORT/DBNAME"
-
-# Create your first model in Prisma
-
-In schema.prisma, create your model (you will find already multipe models there, leave them if you want to NextAuth afterwards, you will need them ). When you are done enter this command : "npx prixma db push" .
-
-You should see this message : 🚀 Your database is now in sync with your Prisma schema.
-If not, it's probably a problem with the Database connection URL string of your Postgres, check again that your postgres server is running.
-
-As another check, you can use this command : "npx prisma studio". It'll launch a visual interface to interact with your database.
-
-# Generate your prisma client
-
-With this command, generate your prisma client : "npx prisma generate"
-You'll have to run this command everytime you make a change to your prisma.schema file.
-
-# Turn on your app
-
-With your app turned on, the frame on the top right corner should be turn to pinkish :)
-
-# Set NextAuth
-
-You will only need to copy the .env.example file into your .env file.
-Be careful not to delete the postgre connection string.
-
-Then you need to complete the empty fields :)
-
-If successful you should be able to register through Google OAuth.
+You will have to go through the same process with other providers if you want to add yours.
 If you want to add other providers like Facebook or Instagram, have a look here : https://next-auth.js.org/providers/
+
+# Start Prisma and the Database
+
+To do so, run "yarn serve"
+
+# Open a new console and check if everything works ! 
+
+Launch the application in a new terminal with "yarn run dev"
+The frame on the top right corner should be pinkish :) 
+That means that the database is up and running for your application
+
+# Check the Authentication with NextAuth
+
+Click the blueish frame under the pinkish one, and try registering with Google. 
+If everything went well, you should be back to the home screen with both frame pinkish :) 
+
+# IMPORTANT TIPS: 
+
+Don't forget that if you want to make changes to your database models (and you will), this happens in prisma/shema.prisma.
+When you are ready to implement the changes, start by running 'yarn serve'. Then open another terminal and run 'npx prisma db push'
+Then you can close both Terminals
+
+Et voilà ! 
+
+# Issues :
+
+Let me know if you have any problem by posting an issue in the repository and, try to be as detailed as possible ! 
+
