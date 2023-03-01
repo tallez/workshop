@@ -14,6 +14,7 @@ First, clone the repository and install the dependencies with "yarn install" in 
 
 ... and copy the content of .env.example in it.
 For the Google Authentication, you should create the credentials of your application in Google.
+Please feel free to change
 
 - Google Cloud Console : https://console.cloud.google.com/
 - Create a New Project or use an existing one
