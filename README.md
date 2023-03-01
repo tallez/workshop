@@ -26,11 +26,11 @@ If you want to add other providers like Facebook or Instagram, have a look here 
 # Start Prisma and the Database
 
 To do so, run "yarn serve".
-In a new terminal run "yarn prisma-set"
+In a new terminal run "yarn set-prisma"
 
 # Open a new console and check if everything works !
 
-Launch the application in a new terminal with "yarn run dev".
+Launch the application with "yarn run dev".
 The frame on the top right corner should be pinkish. :)
 That means that the database is up and running for your application.
 
@@ -42,7 +42,7 @@ If everything went well, you should be back to the home screen with both frame p
 # IMPORTANT TIPS:
 
 Don't forget that if you want to make changes to your database models (and you will), this happens in prisma/shema.prisma.
-When you are ready to implement the changes, start by running 'yarn serve'. Then open another terminal and run again 'yarn prisma-set'.
+When you are ready to implement the changes, start by running 'yarn serve'. Then open another terminal and run again 'yarn set-prisma'.
 
 Et voilà !
 
