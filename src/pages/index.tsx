@@ -1,8 +1,8 @@
 import React from "react"
 
+import { useSession } from "next-auth/react"
 import Head from "next/head"
 import Link from "next/link"
-import { useSession } from "next-auth/react"
 
 import prisma from "../../lib/prisma"
 
