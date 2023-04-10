@@ -1,8 +1,8 @@
 import React from "react"
 
-import { useSession } from "next-auth/react"
 import Head from "next/head"
 import Link from "next/link"
+import { useSession } from "next-auth/react"
 
 import prisma from "../../lib/prisma"
 
@@ -82,13 +82,12 @@ export default function Home({ connected }) {
                 <h3 className="text-3xl font-bold">Get it 👇</h3>
 
                 <span className="inline-flex rounded-md shadow-sm">
-                  <Link href="https://github.com/agcty/nextjs-advanced-starter">
-                    <a
-                      type="button"
-                      className="inline-flex items-center rounded-md border border-transparent bg-blue-600 px-4 py-4 font-medium leading-6 text-white transition duration-150 ease-in-out hover:bg-blue-500 focus:border-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-400 active:bg-blue-700 sm:px-10"
-                    >
-                      Copy Template from GitHub
-                    </a>
+                  <Link
+                    href="https://github.com/agcty/nextjs-advanced-starter"
+                    type="button"
+                    className="inline-flex items-center rounded-md border border-transparent bg-blue-600 px-4 py-4 font-medium leading-6 text-white transition duration-150 ease-in-out hover:bg-blue-500 focus:border-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-400 active:bg-blue-700 sm:px-10"
+                  >
+                    Copy Template from GitHub
                   </Link>
                 </span>
               </div>
@@ -133,13 +132,12 @@ export default function Home({ connected }) {
               <div className="space-y-5 place-self-center px-4 py-24 text-center">
                 <h3 className="text-3xl font-bold">Get it 👇</h3>
                 <span className="inline-flex rounded-md shadow-sm">
-                  <Link href="https://github.com/tallez/Next-Advanced-Prisma-Extension">
-                    <a
-                      type="button"
-                      className="inline-flex items-center rounded-md border border-transparent bg-gradient-to-r from-pink-500 to-orange-500 px-4 py-4 font-medium leading-6 text-white transition duration-150 ease-in-out hover:bg-orange-500 focus:border-orange-700 focus:outline-none focus:ring-4 focus:ring-red-400 active:bg-red-700 sm:px-10"
-                    >
-                      Copy Template from GitHub
-                    </a>
+                  <Link
+                    href="https://github.com/tallez/Next-Advanced-Prisma-Extension"
+                    type="button"
+                    className="inline-flex items-center rounded-md border border-transparent bg-gradient-to-r from-pink-500 to-orange-500 px-4 py-4 font-medium leading-6 text-white transition duration-150 ease-in-out hover:bg-orange-500 focus:border-orange-700 focus:outline-none focus:ring-4 focus:ring-red-400 active:bg-red-700 sm:px-10"
+                  >
+                    Copy Template from GitHub
                   </Link>
                 </span>
               </div>
@@ -226,7 +224,11 @@ function CheckIcon(props) {
 }
 
 function SignalTestersContainers({ children }) {
-  return <div className="fixed top-0 right-0 m-4 space-y-2">{children}</div>
+  return (
+    <div className="fixed top-0 right-0 m-4 hidden space-y-2 lg:block ">
+      {children}
+    </div>
+  )
 }
 
 function PrismaConnectionSign({ connected }: { connected: boolean }) {
@@ -260,7 +262,7 @@ function NextAuthenticationSign({ connected }: { connected: boolean }) {
 
   if (connected && session) {
     return (
-      <Link href="/api/auth/signout" passHref>
+      <Link href="/api/auth/signout" passHref legacyBehavior>
         <div className="flex items-center justify-center space-x-4 rounded bg-gradient-to-r from-pink-500 to-orange-500 p-4">
           <span className="text-white">Valid NextAuth Session</span>
         </div>
@@ -274,7 +276,7 @@ function NextAuthenticationSign({ connected }: { connected: boolean }) {
     )
   } else {
     return (
-      <Link href="/api/auth/signin" passHref>
+      <Link href="/api/auth/signin" passHref legacyBehavior>
         <div className="flex cursor-pointer items-center justify-center space-x-4 rounded bg-gradient-to-r from-teal-500 to-blue-500 p-4  hover:from-teal-700 hover:to-blue-500">
           <span className="text-white">No NextAuth session</span>
         </div>
