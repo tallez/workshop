@@ -1,11 +1,5 @@
-import React from "react"
-import ArticleLayout from "../../components/layouts"
-import TextEditor from "../../components/text-editor"
+import React from "react";
 
 export default function Home() {
-  return (
-    <ArticleLayout>
-      <TextEditor />
-    </ArticleLayout>
-  )
+  return <div className="w-full bg-orange-300">Hello</div>;
 }
