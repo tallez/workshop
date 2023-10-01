@@ -5,12 +5,12 @@ export enum LibraryType {
     fileSystem = 'fileSystem'
 }
 
-interface Library {
+export interface Library {
     libraryType: LibraryType;
     libraryPath: string;
 }
 
-interface CuratorProps {
+export interface CuratorProps {
     library: Library
 }
 
@@ -23,8 +23,8 @@ export class Curator {
         this.libraryPath = params.library.libraryPath; // Initialize libraryPath
     }
 
-    find(projectId: string, callback: (error: Error | null, project: any) => void) {
-        const filePath = path.join(process.cwd(), this.libraryPath, `${projectId}.json`);
+    find(name: string, callback: (error: Error | null, project: any) => void) {
+        const filePath = path.join(process.cwd(), this.libraryPath, `${name}.json`);
 
         fs.readFile(filePath, 'utf8', (err, data) => {
             if (err) {
@@ -42,9 +42,8 @@ export class Curator {
         });
     }
 
-    save(projectId: string, data: any, callback: (error: Error | null) => void) {
-        const filePath = path.join(process.cwd(), this.libraryPath, `${projectId}.json`);
-
+    save(name: string, data: any, callback: (error: Error | null) => void) {
+        const filePath = path.join(process.cwd(), this.libraryPath, `${name}.json`);
         const jsonData = JSON.stringify(data, null, 2);
 
         fs.writeFile(filePath, jsonData, 'utf8', (err) => {

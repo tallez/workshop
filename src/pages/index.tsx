@@ -1,5 +1,23 @@
-import React from "react";
+import { getFile } from "@utils/client-library";
+import React, { useState } from "react";
 
 export default function Home() {
-  return <div className="w-full bg-orange-300">Hello</div>;
+  const [data, setData] = useState(null);
+
+  const fetchData = async () => {
+    const file = await getFile("test_project");
+    setData(file);
+  };
+
+  return (
+    <div>
+      <button onClick={fetchData}>Fetch Data</button>
+      {data && (
+        <div>
+          <h2>Data from API:</h2>
+          <pre>{JSON.stringify(data, null, 2)}</pre>
+        </div>
+      )}
+    </div>
+  );
 }

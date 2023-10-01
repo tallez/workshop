@@ -8,28 +8,28 @@ app.use(cors())
 app.use(bodyParser.json())
 
 app.post('/library', (req, res) => {
-    const { action, projectId, newContent } = req.body;
+    const { action, name, content } = req.body;
 
     const library = { libraryType: LibraryType.fileSystem, libraryPath: "/src/library/" }
     const curator = new Curator({ library });
 
     switch (action) {
         case 'find':
-            curator.find(projectId, (error, project) => {
+            curator.find(name, (error, project) => {
                 if (error) {
-                    res.status(404).send('Error: Project not found');
+                    res.status(404).send({ success: false, result: 'Error: Project not found' });
                 } else {
-                    res.send(project);
+                    res.status(200).send({ success: true, result: project });
                 }
             });
             break;
 
         case 'save':
-            curator.save(projectId, newContent, (error) => {
+            curator.save(name, content, (error) => {
                 if (error) {
-                    res.status(500).send(`Error saving project: ${error}`);
+                    res.status(500).send({ success: false, result: `Error saving project: ${error}` });
                 } else {
-                    res.send('Project saved');
+                    res.status(200).send({ success: true, result: 'Project saved' });
                 }
             });
             break;
