@@ -1,4 +1,4 @@
 /node_modules
 /.next
 /database/node_modules
-/database/src/library
+/database/src/library/*

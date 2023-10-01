@@ -1,32 +1,43 @@
-import express, { Application, Request, Response, NextFunction } from 'express'
+import express from 'express'
 import cors from 'cors'
 import bodyParser from 'body-parser'
-import { find, save } from './utils/project'
+import { Curator, LibraryType } from './utils/curator'
 
 const app = express()
 app.use(cors())
 app.use(bodyParser.json())
 
-app.post('/project', (req, res) => {
-    const { action, projectId, newContent } = req.body
+app.post('/library', (req, res) => {
+    const { action, projectId, newContent } = req.body;
+
+    const library = { libraryType: LibraryType.fileSystem, libraryPath: "/src/library/" }
+    const curator = new Curator({ library });
+
     switch (action) {
-        case ('find'):
-            find(projectId, (error, project) => {
+        case 'find':
+            curator.find(projectId, (error, project) => {
                 if (error) {
-                    res.send('error : project not found')
+                    res.status(404).send('Error: Project not found');
                 } else {
-                    res.send(project)
+                    res.send(project);
                 }
             });
-        case ('save'):
-            save(projectId, newContent, (error) => {
+            break;
+
+        case 'save':
+            curator.save(projectId, newContent, (error) => {
                 if (error) {
-                    res.send(`error saving project: ${error}`);
+                    res.status(500).send(`Error saving project: ${error}`);
                 } else {
-                    res.send('project saved')
+                    res.send('Project saved');
                 }
             });
+            break;
+
+        default:
+            res.status(400).send('Invalid action');
     }
-})
+});
+
 
 app.listen(3001, () => { console.log('Listening to 3001') }) 
