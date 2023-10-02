@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import bodyParser from 'body-parser'
 import { Curator, LibraryType } from './utils/curator'
+import { LIBRARY_PATH, LIBRARY_PORT } from './constants'
 
 const app = express()
 app.use(cors())
@@ -10,8 +11,8 @@ app.use(bodyParser.json())
 app.post('/library', (req, res) => {
     const { action, name, content } = req.body;
 
-    const library = { libraryType: LibraryType.fileSystem, libraryPath: "/src/library/" }
-    const curator = new Curator({ library });
+    const library = { libraryType: LibraryType.fileSystem, libraryPath: LIBRARY_PATH }
+    const curator = new Curator({ library: library });
 
     switch (action) {
         case 'find':
@@ -40,4 +41,4 @@ app.post('/library', (req, res) => {
 });
 
 
-app.listen(3001, () => { console.log('Listening to 3001') }) 
+app.listen(LIBRARY_PORT, () => { console.log(`Listening to ${LIBRARY_PORT}`) }) 

@@ -15,16 +15,14 @@ export interface CuratorProps {
 }
 
 export class Curator {
-    libraryType: LibraryType;
-    libraryPath: string;
+    library: Library
 
     constructor(params: CuratorProps) {
-        this.libraryType = params.library.libraryType;
-        this.libraryPath = params.library.libraryPath; // Initialize libraryPath
+        this.library = params.library
     }
 
     find(name: string, callback: (error: Error | null, project: any) => void) {
-        const filePath = path.join(process.cwd(), this.libraryPath, `${name}.json`);
+        const filePath = path.join(process.cwd(), this.library.libraryPath, `${name}.json`);
 
         fs.readFile(filePath, 'utf8', (err, data) => {
             if (err) {
@@ -43,7 +41,7 @@ export class Curator {
     }
 
     save(name: string, data: any, callback: (error: Error | null) => void) {
-        const filePath = path.join(process.cwd(), this.libraryPath, `${name}.json`);
+        const filePath = path.join(process.cwd(), this.library.libraryPath, `${name}.json`);
         const jsonData = JSON.stringify(data, null, 2);
 
         fs.writeFile(filePath, jsonData, 'utf8', (err) => {

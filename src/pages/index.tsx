@@ -1,4 +1,4 @@
-import { getFile } from "@utils/client-library";
+import { getFile } from "@utils/library-client";
 import React, { useState } from "react";
 
 export default function Home() {

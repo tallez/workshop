@@ -1,17 +1,3 @@
-interface StoryProps {
-  title: string;
-  components: BrickProps[];
-}
-
-interface BrickProps {
-  type: BrickTypes;
-  content: string;
-}
-
-enum BrickTypes {
-  TITLE = "title",
-}
-
 export default function Story() {
   return (
     <div className="flex w-full items-center justify-center">
