@@ -1,13 +1,19 @@
-export default function Story() {
-  return (
-    <div className="flex w-full items-center justify-center">
-      <div className="w-1/3 py-2">
-        <Brick />
+export default function Story({ project }: { project: StoryProps | null }) {
+  if (project) {
+    const { title, components } = project;
+    return (
+      <div className="flex w-full flex-col items-center justify-center">
+        <p>{title}</p>
+        <div className="flex w-1/2 flex-col items-center justify-center py-2">
+          {components.map((c) => (
+            <Brick type={c.type} content={c.content} />
+          ))}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
-export function Brick() {
-  return <div className="w-full">Hello</div>;
+function Brick({ type, content }: BrickProps) {
+  return <div className="w-full">{content}</div>;
 }
